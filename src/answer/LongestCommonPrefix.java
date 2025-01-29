@@ -1,19 +1,19 @@
 package answer;
 
+import java.util.Arrays;
+
 public class LongestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
-        String answer = "";
-        for(int i = 0; i < strs[0].length(); i ++){
-            for(int j = 0; j < strs[1].length(); j++){
-                if(strs[0].charAt(i) == strs[1].charAt(j)){
-                    for(int k = 0; k < strs[2].length(); k++){
-                        if(strs[1].charAt(j) == strs[2].charAt(k)){
-                            answer += strs[2].charAt(k);
-                        }
-                    }
-                }
+        StringBuilder answer = new StringBuilder();
+        Arrays.sort(strs);
+        String first = strs[0];
+        String last = strs[strs.length-1];
+        for(int i = 0; i < Math.min(first.length(), last.length()); i++){
+            if(first.charAt(i) != last.charAt(i)){
+                return answer.toString();
             }
+            answer.append(first.charAt(i));
         }
-        return answer;
+        return answer.toString();
     }
 }
